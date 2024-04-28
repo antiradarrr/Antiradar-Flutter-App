@@ -1,0 +1,14 @@
+{
+    "hello": "hello",
+    "selectLanguage": "Select language",
+    "add": "Add",
+    "chooseAStyle": "Choose a style",
+    "light": "Light",
+    "dark": "Dark",
+    "contin": "Continue",
+    "start": "START",
+    "welcomeToAntiradar": "Welcome to Antiradar",
+    "static": "Static",
+    "chamber": "chamber",
+    "stop": "STOP"
+}

@@ -1,0 +1,14 @@
+{
+    "hello": "hello",
+    "selectLanguage": "Выбор языка",
+    "add": "Добавить",
+    "chooseAStyle": "Выберите стиль",
+    "light": "Light",
+    "dark": "Dark",
+    "continue": "Continue",
+    "start": "Start",
+    "welcomeToAntiradar": "Добро пожаловать в Антирадар",
+    "static": "Static",
+    "chamber": "Chamber",
+    "stop": "STOP"
+}
