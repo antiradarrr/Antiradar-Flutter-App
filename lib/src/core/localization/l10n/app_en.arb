@@ -10,5 +10,9 @@
     "welcomeToAntiradar": "Welcome to Antiradar",
     "static": "Static",
     "chamber": "chamber",
-    "stop": "STOP"
+    "stop": "STOP",
+    "lang" : "Language",
+    "loadPoints" : "Load points",
+    "settings" : "Settings",
+    "darkMode" : "Dark mode"
 }

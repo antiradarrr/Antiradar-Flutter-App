@@ -1,14 +1,18 @@
 {
     "hello": "hello",
-    "selectLanguage": "Seleção de idioma",
-    "add": "Escolher",
+    "selectLanguage": "Select language",
+    "add": "Add",
     "chooseAStyle": "Choose a style",
     "light": "Light",
     "dark": "Dark",
     "contin": "Continue",
-    "start": "Start",
+    "start": "START",
     "welcomeToAntiradar": "Welcome to Antiradar",
     "static": "Static",
-    "chamber": "Chamber",
-    "stop": "STOP"
+    "chamber": "chamber",
+    "stop": "STOP",
+    "lang" : "Language",
+    "loadPoints" : "Load points",
+    "settings" : "Settings",
+    "darkMode" : "Dark mode"
 }

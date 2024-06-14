@@ -4,7 +4,7 @@ import 'package:antiradar/src/feature/splash_screen/wrappers/theme_wrapper.dart'
 import 'package:antiradar/src/uikit/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:antiradar/l10n/app_localizations.dart';
 
 /// {@template app}
 /// Application widget.

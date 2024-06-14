@@ -2,7 +2,7 @@ import 'package:antiradar/src/feature/splash_screen/presentation/widgets/continu
 import 'package:antiradar/src/uikit/gradients/app_gradients.dart';
 import 'package:antiradar/src/uikit/text_style/app_text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:antiradar/l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 

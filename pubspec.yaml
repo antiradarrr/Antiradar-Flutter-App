@@ -10,6 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
 
   cupertino_icons: ^1.0.6
@@ -24,17 +27,22 @@ dependencies:
   go_router: ^13.2.4
   shared_preferences: ^2.2.3
   google_fonts: ^6.2.1
+  flutter_local_notifications: ^17.1.2
+  assets_audio_player: ^3.1.1
 
+
+
+  flutter_gen: any
+  file_picker: ^8.0.5
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_localizations:
-    sdk: flutter
-  intl: any
+
 
   flutter_lints: ^3.0.0
 
- 
+
+
 flutter:
   
   uses-material-design: true
@@ -48,7 +56,11 @@ flutter:
   assets:
     - assets/xlsx/GPX_cam_bA.xlsx
     - assets/icons/
-  
+    - assets/audio/russian_voice/
+    - assets/audio/brazilian_voice/
+    - assets/audio/english_voice/
+    - assets/audio/spanish_voice/
+
   fonts:
     - family: SFpro
       fonts:

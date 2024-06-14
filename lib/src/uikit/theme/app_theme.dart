@@ -11,6 +11,7 @@ abstract base class AppTheme {
 
   /// Light theme configuration.
   static final ThemeData lightTheme = ThemeData(
+      scaffoldBackgroundColor: _lightColorScheme.scaffoldBackgroundColor,
       colorScheme: ColorScheme(
         brightness: Brightness.light,
         primary: _lightColorScheme.primary,
@@ -30,13 +31,16 @@ abstract base class AppTheme {
       ),
       listTileTheme: ListTileThemeData(titleTextStyle: AppTextStyles.body),
       textTheme: TextTheme(
-          bodyLarge: AppTextStyles.buttonStyle,
-          titleMedium: AppTextStyles.darkThemeButtonStyle,
-          titleSmall: AppTextStyles.smallLightTextStyle),
+        bodyLarge: AppTextStyles.buttonStyle,
+        titleMedium: AppTextStyles.darkThemeButtonStyle,
+        titleSmall: AppTextStyles.smallLightTextStyle,
+        titleLarge: AppTextStyles.lightLabelLarge,
+      ),
       appBarTheme: const AppBarTheme(backgroundColor: ColorPalette.blue));
 
   /// Dark theme configuration.
   static final ThemeData darkTheme = ThemeData(
+      scaffoldBackgroundColor: _darkColorScheme.scaffoldBackgroundColor,
       colorScheme: ColorScheme(
           brightness: Brightness.dark,
           primary: _darkColorScheme.primary,
@@ -51,9 +55,11 @@ abstract base class AppTheme {
           onSurface: Colors.white),
       listTileTheme: ListTileThemeData(titleTextStyle: AppTextStyles.body),
       textTheme: TextTheme(
-          bodyLarge: AppTextStyles.buttonStyle,
-          titleMedium: AppTextStyles.darkThemeButtonStyle,
-          titleSmall: AppTextStyles.smallDarkTextStyle),
+        bodyLarge: AppTextStyles.buttonStyle,
+        titleMedium: AppTextStyles.darkThemeButtonStyle,
+        titleSmall: AppTextStyles.smallDarkTextStyle,
+        titleLarge: AppTextStyles.darkLabelLarge,
+      ),
       appBarTheme: const AppBarTheme(backgroundColor: Color(0xff000000)));
 
   /// Base color scheme.
@@ -62,3 +68,7 @@ abstract base class AppTheme {
   /// Base dark color scheme.
   static const _darkColorScheme = AppColorScheme.dark();
 }
+
+
+
+

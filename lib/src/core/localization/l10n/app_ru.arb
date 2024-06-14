@@ -1,14 +1,18 @@
 {
     "hello": "hello",
-    "selectLanguage": "Выбор языка",
-    "add": "Добавить",
-    "chooseAStyle": "Выберите стиль",
+    "selectLanguage": "Select language",
+    "add": "Add",
+    "chooseAStyle": "Choose a style",
     "light": "Light",
     "dark": "Dark",
-    "continue": "Continue",
-    "start": "Start",
-    "welcomeToAntiradar": "Добро пожаловать в Антирадар",
+    "contin": "Continue",
+    "start": "START",
+    "welcomeToAntiradar": "Welcome to Antiradar",
     "static": "Static",
-    "chamber": "Chamber",
-    "stop": "STOP"
+    "chamber": "chamber",
+    "stop": "STOP",
+    "lang" : "Language",
+    "loadPoints" : "Load points",
+    "settings" : "Settings",
+    "darkMode" : "Dark mode"
 }

@@ -1,15 +1,22 @@
+import 'package:antiradar/src/feature/antiradar/presentation/bloc/drive_bloc.dart';
 import 'package:antiradar/src/feature/splash_screen/wrappers/theme_wrapper.dart';
 import 'package:antiradar/src/uikit/text_style/app_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:antiradar/l10n/app_localizations.dart';
 
 /// {@template start_button_vertical_widget}
 /// StartButtonVerticalWidget widget.
 /// {@endtemplate}
 class StartButtonVerticalWidget extends StatelessWidget {
   /// {@macro start_button_vertical_widget}
-  const StartButtonVerticalWidget({super.key, this.voidCallback});
+  const StartButtonVerticalWidget({
+    super.key,
+    required this.driveStatus,
+    this.voidCallback,
+  });
 
   final VoidCallback? voidCallback;
+  final DriveStatus driveStatus;
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +40,11 @@ class StartButtonVerticalWidget extends StatelessWidget {
                       backgroundColor: theme.primaryColor,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10))),
-                  child: const FittedBox(
+                  child: FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Text(
-                      'STOP',
+                      driveStatus.name.toString(),
+                      // AppLocalizations.of(context)!.stop,
                       style: AppTextStyles.kButtonStyle,
                     ),
                   ))),

@@ -1,11 +1,19 @@
-import 'package:antiradar/src/feature/antiradar/presentation/widgets/vertical/start_button_vertical_widget.dart';
+import 'package:antiradar/src/core/dependencies/dependencies.dart';
+import 'package:antiradar/src/core/helpers/audio_player_helper.dart';
+import 'package:antiradar/src/core/helpers/notification_helper.dart';
+import 'package:antiradar/src/core/helpers/notification_settings/initialization_settigns.dart';
+import 'package:antiradar/src/core/helpers/notification_settings/notification_details.dart';
+import 'package:antiradar/src/core/utils/logger/logger.dart';
+import 'package:antiradar/src/feature/antiradar/domain/entity/nearest_location_entity.dart';
+import 'package:antiradar/src/feature/splash_screen/wrappers/localization_wrapper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// {@template test_screen}
-/// TestScreen widget.
-/// {@endtemplate}
+import '../../../../core/exceptions/drive_exception.dart';
+import '../../domain/enums/speed_limits_status.dart';
+import '../bloc/drive_bloc.dart';
+
 class TestScreen extends StatefulWidget {
-  /// {@macro test_screen}
   const TestScreen({super.key});
 
   @override
@@ -13,39 +21,54 @@ class TestScreen extends StatefulWidget {
 }
 
 class _TestScreenState extends State<TestScreen> {
+  late DriveBloc driveBloc;
+
+  @override
+  void initState() {
+    driveBloc = Dependencies.of(context).driveBloc;
+    super.initState();
+  }
+
+  Future<void> completeListener() async {
+    driveBloc.stream.listen((event) {});
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            width: MediaQuery.sizeOf(context).width,
-            height: MediaQuery.sizeOf(context).height * 0.6,
-            decoration: BoxDecoration(color: Theme.of(context).cardColor),
-            child: Column(
-              children: <Widget>[
-                Text(
-                  'Speed control',
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleSmall!
-                      .copyWith(fontSize: 24),
-                ),
-                Text(
-                  'Stationary camera',
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleSmall!
-                      .copyWith(fontSize: 24, fontWeight: FontWeight.w400),
-                ),
-                Spacer(),
-                StartButtonVerticalWidget()
-              ],
+    final langCode = LocalizationWrapper.of(context).currentLangCode;
+    return BlocConsumer<DriveBloc, DriveState>(
+      bloc: driveBloc,
+      listener: (context, state) {
+        if (!state.cameraIsEmpty) {
+          logger.i('camera fetch completed');
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+          body: SafeArea(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                      onPressed: () {
+                        driveBloc.add(FetchLocalCameraLocation());
+                      },
+                      child: const Text('Получить лоокальные позиции камер')),
+                  const SizedBox(height: 10),
+                  ElevatedButton(
+                      onPressed: () async {
+                        driveBloc
+                            .add(FetchClosetsCameraLocation(langCode: 'ru'));
+
+                      },
+                      child: const Text('Получить ближайшую позицию камеры')),
+                ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

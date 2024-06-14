@@ -1,7 +1,5 @@
 import 'package:antiradar/src/feature/splash_screen/wrappers/theme_wrapper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/widgets.dart';
 
 /// {@template app_gradients}
 /// AppGradient.

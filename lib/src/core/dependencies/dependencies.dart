@@ -1,8 +1,11 @@
-import 'package:antiradar/src/feature/antiradar/data/data_souces/driwe_data_sources.dart';
-import 'package:antiradar/src/feature/antiradar/data/data_souces/read_excel_data_sources.dart.dart';
-import 'package:antiradar/src/feature/antiradar/data/repositories/driwe_repository_impl.dart';
-import 'package:antiradar/src/feature/antiradar/data/repositories/read_excel_repository_impl.dart';
-import 'package:antiradar/src/feature/antiradar/presentation/bloc/antiradar_bloc.dart';
+import 'package:antiradar/src/core/helpers/notification_settings/initialization_settigns.dart';
+import 'package:antiradar/src/feature/antiradar/data/data_sources/closets_location_data_sources.dart';
+import 'package:antiradar/src/feature/antiradar/data/data_sources/local_storage/camera_local_data_sources.dart';
+import 'package:antiradar/src/feature/antiradar/data/data_sources/mock/closets_location_mock.dart';
+import 'package:antiradar/src/feature/antiradar/data/repositories/camera_closets_location_repository_impl.dart';
+import 'package:antiradar/src/feature/antiradar/data/repositories/camera_local_repository_impl.dart';
+import 'package:antiradar/src/feature/antiradar/data/repositories/post_closets_location_repository_impl.dart';
+import 'package:antiradar/src/feature/antiradar/presentation/bloc/drive_bloc.dart';
 import 'package:antiradar/src/feature/splash_screen/controller/localization_controller.dart';
 import 'package:antiradar/src/feature/splash_screen/presentation/bloc/localization_bloc.dart';
 import 'package:antiradar/src/feature/splash_screen/presentation/bloc/theme_cubit.dart';
@@ -19,26 +22,36 @@ final class Dependencies {
   late final LocalizationController localizationController;
   late final LocalizationBloc localizationBloc;
 
-  late final ReadExcelDataSources readExcelDataSources;
-  late final DriweDataSources driweDataSources;
-  late final DriweRepositoryImpl driweRepositoryImpl;
-  late final ReadExcelRepositoryImpl readExcelRepositoryImpl;
-  late final AntiradarBloc antiradarBloc;
-
   late final ThemeCubit themeCubit;
-  Future<void> initialize() async {
-    shar = await SharedPreferences.getInstance();
 
+  late final CameraLocalDataSources cameraLocalDataSources;
+  late final CameraClosetsLocationDataSources cameraClosetsLocationDataSources;
+  late final PostLocationDataSources postLocationDataSources;
+
+  late final PostClosetsLocationRepositoryImpl postLocationRepositoryImpl;
+  late final CameraClosetsLocationRepositoryImpl cameraLocationRepositoryImpl;
+  late final CameraLocalRepositoryImpl cameraLocalRepositoryImpl;
+  late final MockClosetsLocation mockClosetsLocation;
+  late final DriveBloc driveBloc;
+
+  Future<void> initialize() async {
+    await NotificationSettings.instance.notificationInitialize();
+    mockClosetsLocation = MockClosetsLocation();
+    shar = await SharedPreferences.getInstance();
     localizationController = LocalizationController(sharedPreferences: shar);
     localizationBloc = LocalizationBloc(localizationController);
-    readExcelDataSources = ReadExcelDataSources();
-    driweDataSources = DriweDataSources();
-    driweRepositoryImpl =
-        DriweRepositoryImpl(driweDataSources: driweDataSources);
-    readExcelRepositoryImpl =
-        ReadExcelRepositoryImpl(readExcelDataSources: readExcelDataSources);
-    antiradarBloc = AntiradarBloc(driweRepositoryImpl, readExcelRepositoryImpl);
     themeCubit = ThemeCubit(shar);
+    cameraClosetsLocationDataSources = CameraClosetsLocationDataSources();
+    cameraLocalDataSources = CameraLocalDataSources();
+    postLocationDataSources = PostLocationDataSources();
+    postLocationRepositoryImpl = PostClosetsLocationRepositoryImpl(
+        closetsLocationDataSources: postLocationDataSources);
+    cameraLocationRepositoryImpl = CameraClosetsLocationRepositoryImpl(
+        cameraClosetsLocationDataSources: cameraClosetsLocationDataSources);
+    cameraLocalRepositoryImpl = CameraLocalRepositoryImpl(
+        cameraLocalDataSources: cameraLocalDataSources);
+    driveBloc = DriveBloc(cameraLocationRepositoryImpl,
+        postLocationRepositoryImpl, cameraLocalRepositoryImpl);
   }
 
   static Dependencies of(BuildContext context) {

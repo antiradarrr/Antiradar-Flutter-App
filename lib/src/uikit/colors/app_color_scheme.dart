@@ -23,7 +23,8 @@ base class AppColorScheme extends ThemeExtension<AppColorScheme> {
   final Color onBackground;
 
   final Color surface;
-  
+
+  final Color scaffoldBackgroundColor;
 
   /// base dark theme
   const AppColorScheme.light()
@@ -31,7 +32,8 @@ base class AppColorScheme extends ThemeExtension<AppColorScheme> {
         primary = ColorPalette.blue,
         background = ColorPalette.white,
         onBackground = ColorPalette.dark,
-        surface = ColorPalette.shadeGrey;
+        surface = ColorPalette.shadeGrey,
+        scaffoldBackgroundColor = ColorPalette.white;
 
   /// base light theme
   const AppColorScheme.dark()
@@ -39,7 +41,8 @@ base class AppColorScheme extends ThemeExtension<AppColorScheme> {
         primary = ColorPalette.blue,
         background = ColorPalette.white,
         onBackground = ColorPalette.dark,
-        surface = ColorPalette.blackBlue;
+        surface = ColorPalette.blackBlue,
+        scaffoldBackgroundColor = ColorPalette.dark;
 
   const AppColorScheme._({
     required this.onPrimary,
@@ -47,20 +50,25 @@ base class AppColorScheme extends ThemeExtension<AppColorScheme> {
     required this.background,
     required this.onBackground,
     required this.surface,
+    required this.scaffoldBackgroundColor,
   });
+
   @override
   ThemeExtension<AppColorScheme> copyWith(
       {Color? primary,
       Color? onPrimary,
       Color? background,
       Color? onBackground,
-      Color? surface}) {
+      Color? surface,
+      Color? scaffoldBackgroundColor}) {
     return AppColorScheme._(
         onPrimary: onPrimary ?? this.onPrimary,
         primary: primary ?? this.primary,
         background: background ?? this.background,
         onBackground: onBackground ?? this.onBackground,
-        surface: surface ?? this.surface);
+        surface: surface ?? this.surface,
+        scaffoldBackgroundColor:
+            scaffoldBackgroundColor ?? this.scaffoldBackgroundColor);
   }
 
   @override
@@ -71,10 +79,12 @@ base class AppColorScheme extends ThemeExtension<AppColorScheme> {
     }
 
     return AppColorScheme._(
-        onPrimary: onPrimary,
-        primary: primary,
-        background: background,
-        onBackground: onBackground,
-        surface: surface);
+      onPrimary: onPrimary,
+      primary: primary,
+      background: background,
+      onBackground: onBackground,
+      surface: surface,
+      scaffoldBackgroundColor: scaffoldBackgroundColor,
+    );
   }
 }

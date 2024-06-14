@@ -1,14 +1,31 @@
 import 'package:antiradar/src/uikit/text_style/app_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 /// {@template speed_vertical_widget}
 /// SpeedVerticalWidget widget.
 /// {@endtemplate}
-class SpeedVerticalWidget extends StatelessWidget {
+class SpeedVerticalWidget extends StatefulWidget {
   /// {@macro speed_vertical_widget}
-  const SpeedVerticalWidget({super.key, this.speed = 0});
+  const SpeedVerticalWidget({super.key});
 
-  final int speed;
+  @override
+  State<SpeedVerticalWidget> createState() => _SpeedVerticalWidgetState();
+}
+
+class _SpeedVerticalWidgetState extends State<SpeedVerticalWidget> {
+  @override
+  void initState() {
+    super.initState();
+    Geolocator.getPositionStream().listen((event) {
+      setState(() {
+        speed = event.speed.toInt();
+      });
+    });
+  }
+
+  int speed = 0;
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);

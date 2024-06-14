@@ -13,7 +13,7 @@ base class AntiradarVerticalMaxPainter extends CustomPainter {
     final firstCircleDyPosition = size.height / 1.4;
     var paint = Paint()
       ..color = const Color(0xFFC9DBE4)
-      ..strokeWidth = 2.0
+      ..strokeWidth = 1.5
       ..style = PaintingStyle.stroke;
 
     final firstCircleRadius = size.height * 0.15;

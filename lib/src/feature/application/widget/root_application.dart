@@ -13,13 +13,20 @@ class RootApplication extends StatelessWidget {
   const RootApplication({super.key, required this.dependencies});
 
   final Dependencies dependencies;
+
   @override
   Widget build(BuildContext context) {
     return DependenciesScope(
       dependencies: dependencies,
-      child: const LocalizationWrapper(
+      child: LocalizationWrapper(
         child: ThemeWrapper(
-          child: Application(),
+          child: Builder(builder: (context) {
+            return MediaQuery(
+              data: MediaQuery.of(context)
+                  .copyWith(textScaler: TextScaler.noScaling),
+              child: const Application(),
+            );
+          }),
         ),
       ),
     );
